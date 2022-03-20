@@ -5,7 +5,8 @@ using Cinemachine;
 public class finish : MonoBehaviour
 {
     public SoldierCollecting baseSlot;
-    [SerializeField] CinemachineVirtualCamera battleCam, finalCam;
+    [SerializeField] GameObject mainCam, battleCam;
+    [SerializeField] CinemachineVirtualCamera finalCam;
     [SerializeField] GameObject battleArea;
     [SerializeField] GameObject finalParticles;
     [SerializeField] GameObject inGameCanvas;
@@ -31,7 +32,8 @@ public class finish : MonoBehaviour
         baseSlot.soldierDrop();
         finalParticles.SetActive(false);
         inGameCanvas.SetActive(false);
-        battleCam.Priority = 10;
+        battleCam.SetActive(true);
+        mainCam.SetActive(false);
         player.currentBehaviour = PlayerControl.States.idle;
         Destroy(player.transform.parent.gameObject);
         battleArea.SetActive(true);
