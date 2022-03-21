@@ -15,7 +15,7 @@ using TMPro;
         [SerializeField] public int soldierCost;
         [SerializeField] TextMeshProUGUI costText;
         //[SerializeField] List<Material> material;
-        [SerializeField] ParticleSystem splashEffect;
+        [SerializeField] GameObject splashEffect;
         SoldierCollecting _soldier;
     public TextMeshProUGUI power;
     public float soldierPower;
@@ -72,7 +72,8 @@ using TMPro;
                     hologramSoldier.transform.parent = null;
                     Destroy(hologramSoldier);
                     _soldier.GetComponent<Soldier>().followTarget = other.transform;
-                    splashEffect.Play();
+               GameObject particle = Instantiate(splashEffect, transform.position, Quaternion.identity);
+                particle.transform.localScale = new Vector3(0.16f, 0.16f, 0.16f);
                 other.GetComponent<PlayerControl>().soldierCollect.soldiers.Add(prefabHologramSoldier);
                 other.GetComponent<PlayerControl>().soldierCollect.healtInit(soldierPower);
 

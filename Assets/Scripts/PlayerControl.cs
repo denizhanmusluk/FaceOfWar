@@ -157,7 +157,7 @@ public class PlayerControl : MonoBehaviour, IStartGameObserver
         while (Vector3.Distance(money.transform.position, moneyTarget.transform.position) > 0.3f)
         {
             money.transform.position = Vector3.MoveTowards(money.transform.position, moneyTarget.transform.position, (2 / Vector3.Distance(money.transform.position, moneyTarget.transform.position)) * acceleration * Time.deltaTime);
-            money.transform.localScale = Vector3.Lerp(money.transform.localScale, moneyTarget.transform.localScale, acceleration * 1f * Time.deltaTime);
+            money.transform.localScale = Vector3.Lerp(money.transform.localScale, moneyTarget.transform.localScale, acceleration * 0.4f * Time.deltaTime);
             yield return null;
         }
 

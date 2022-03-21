@@ -11,6 +11,7 @@ TagManager:
   - money
   - enemy
   - base
+  - hologram
   layers:
   - Default
   - TransparentFX
