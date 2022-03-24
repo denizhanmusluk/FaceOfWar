@@ -10,9 +10,18 @@ public class SoldierDrag : MonoBehaviour
 	bool dragActive = true;
 	bool soldierDragging = true;
 	[SerializeField] public GameObject warriourPrefab;
-	//[SerializeField] public TextMeshProUGUI healthText;
+	[SerializeField] public TextMeshProUGUI powerText;
+	Vector3 firstScale;
+	Vector3 minScale;
+	float firstY;
+	[SerializeField] Transform powerCanvas;
 	private void Start()
     {
+		powerCanvas.localScale = new Vector3(0, 0, 0);
+		powerText.text = warriourPrefab.GetComponent<Fighter>().Maxhealth.ToString();
+		firstY = transform.position.y;
+		minScale = new Vector3(0.5f, 0.5f, 0.5f);
+		firstScale = transform.localScale;
 		firstPosition = transform.position;
 		//healthText.text = warriourPrefab.GetComponent<Fighter>().Maxhealth.ToString();
     }
@@ -20,8 +29,11 @@ public class SoldierDrag : MonoBehaviour
 	{
 		if (dragActive)
 		{
+			transform.parent.GetChild(0).GetChild(0).GetComponent<Light>().enabled = false;
 			screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
 			offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
+			StartCoroutine(setScale());
+			StartCoroutine(setScalePowerCanvas(new Vector3(1,1,1)));
 		}
 	}
 
@@ -29,9 +41,10 @@ public class SoldierDrag : MonoBehaviour
 	{
 		if (soldierDragging)
 		{
-			Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
+			Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y * 1.2f, screenPoint.z);
 			transform.position = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
 			transform.GetComponent<illusion>().tweenStop();
+			transform.position = new Vector3(transform.position.x, firstY, transform.position.z);
 		}
 	}
     private void OnMouseUp()
@@ -39,32 +52,73 @@ public class SoldierDrag : MonoBehaviour
 		dragActive = false;
 		if (soldierDragging)
 		{
-			transform.GetComponent<illusion>().tweenScale();
 			StartCoroutine(moveToFirstPoint());
+			StartCoroutine(setScalePowerCanvas(new Vector3(0,0,0)));
+			transform.parent.GetChild(0).GetChild(0).GetComponent<Light>().enabled = true;
+
 		}
-    }
+	}
 	IEnumerator moveToFirstPoint()
     {
 		while( Vector3.Distance(firstPosition, transform.position) > 0.1f)
         {
-			transform.position = Vector3.MoveTowards(transform.position, firstPosition, 20 * Time.deltaTime);
+			transform.position = Vector3.MoveTowards(transform.position, firstPosition, 30 * Time.deltaTime);
+			transform.localScale = Vector3.MoveTowards(transform.localScale, firstScale, 15 * Time.deltaTime);
+			//powerCanvas.localScale = Vector3.MoveTowards(powerCanvas.transform.localScale, new Vector3(0,0,0),5* Time.deltaTime);
+
 			yield return null;
         }
+		transform.position = firstPosition;
+		transform.localScale = firstScale;
+		//powerCanvas.localScale = new Vector3(0, 0, 0);
+
 		dragActive = true;
+		transform.GetComponent<illusion>().tweenScale();
+
+	}
+	IEnumerator setScale()
+    {
+		while(transform.localScale.x > minScale.x && dragActive)
+        {
+			transform.localScale = Vector3.MoveTowards(transform.localScale, minScale, 5 * Time.deltaTime);
+		//powerCanvas.localScale = Vector3.MoveTowards(powerCanvas.transform.localScale, new Vector3(1,1,1),5* Time.deltaTime);
+
+			yield return null;
+        }
+		//powerCanvas.localScale = new Vector3(1, 1, 1);
+	}
+    IEnumerator setScalePowerCanvas(Vector3 targetScale)
+    {
+		float counter = 0;
+        while (counter <1 )
+        {
+			counter += Time.deltaTime;
+            powerCanvas.localScale = Vector3.MoveTowards(powerCanvas.transform.localScale, targetScale, 3 * Time.deltaTime);
+			transform.parent.GetChild(0).transform.localScale = Vector3.MoveTowards(transform.parent.GetChild(0).transform.localScale,new Vector3(1,1,1) - targetScale, 10 * Time.deltaTime);
+			transform.parent.GetChild(1).transform.localScale = Vector3.MoveTowards(transform.parent.GetChild(1).transform.localScale, new Vector3(1, 1, 1) - targetScale, 10 * Time.deltaTime);
+			yield return null;
+        }
+        powerCanvas.localScale = targetScale;
+		transform.parent.GetChild(0).transform.localScale = new Vector3(1, 1, 1) - targetScale;
+		transform.parent.GetChild(1).transform.localScale = new Vector3(1, 1, 1) - targetScale;
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if(other.tag == "point")
         {
-			Destroy(other.GetComponent<Collider>());
-			soldierDragging = false;
-			GameObject war = Instantiate(warriourPrefab, transform.position, Quaternion.identity);
-			war.transform.parent = other.transform;
-			war.transform.parent.parent.GetComponent<targetInitialize>().soldier.Add(war);
-			war.transform.parent.parent.GetComponent<targetInitialize>().isItFull();
-			war.GetComponent<Fighter>().targetInitialize = war.transform.parent.parent.GetComponent<targetInitialize>();
-			war.GetComponent<Fighter>().firstMove();
-			Destroy(gameObject);
+			if (Input.GetMouseButtonUp(0))
+			{
+				Destroy(other.GetComponent<Collider>());
+				soldierDragging = false;
+				GameObject war = Instantiate(warriourPrefab, transform.position, Quaternion.identity);
+				war.transform.parent = other.transform;
+				war.transform.parent.parent.GetComponent<targetInitialize>().soldier.Add(war);
+				war.transform.parent.parent.GetComponent<targetInitialize>().isItFull();
+				war.GetComponent<Fighter>().targetInitialize = war.transform.parent.parent.GetComponent<targetInitialize>();
+				war.GetComponent<Fighter>().firstMove();
+				Destroy(gameObject);
+				other.GetComponent<PowerCompare>().matSet();
+			}
 		}
 	}
 }

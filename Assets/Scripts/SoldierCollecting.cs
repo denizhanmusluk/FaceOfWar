@@ -14,6 +14,7 @@ public class SoldierCollecting : MonoBehaviour
         {
             GameObject soldier = Instantiate(soldiers[i], transform.GetChild(i).transform.position, Quaternion.identity);
             soldier.transform.parent = transform.GetChild(i).transform;
+            soldier.transform.localRotation = Quaternion.Euler(0, 0, 0);
             //transform.GetChild(i).GetComponent<illusion>().hologramSoldier = soldier;
             //transform.GetChild(i).GetComponent<illusion>().tweenScale();
         }
@@ -24,6 +25,8 @@ public class SoldierCollecting : MonoBehaviour
                 soldiers.Add(botSoldier);
                 GameObject soldier = Instantiate(botSoldier, transform.GetChild(i).transform.position, Quaternion.identity);
                 soldier.transform.parent = transform.GetChild(i).transform;
+                soldier.transform.localRotation = Quaternion.Euler(0, 0, 0);
+
                 healthText[i].text = soldier.GetComponent<SoldierDrag>().warriourPrefab.GetComponent<Fighter>().Maxhealth.ToString();
 
                 //transform.GetChild(i).GetComponent<illusion>().hologramSoldier = soldier;

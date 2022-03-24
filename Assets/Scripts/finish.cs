@@ -10,6 +10,7 @@ public class finish : MonoBehaviour
     [SerializeField] GameObject battleArea;
     [SerializeField] GameObject finalParticles;
     [SerializeField] GameObject inGameCanvas;
+    [SerializeField] GameObject money;
     [SerializeField] LevelScore lvlScore;
     private void Start()
     {
@@ -20,6 +21,7 @@ public class finish : MonoBehaviour
         if(other.tag == "Player")
         {
             lvlScore.progressActive = false;
+            money.SetActive(false);
             finalParticles.SetActive(true);
             finalCam.Priority = 5;
             Destroy(this.GetComponent<Collider>());

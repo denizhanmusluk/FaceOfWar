@@ -8,6 +8,7 @@ public class Soldier : MonoBehaviour
     float moveSpeed;
     bool isCollision = false;
     Animator anim;
+    public int slotNum;
     private void Start()
     {
         anim = GetComponent<Animator>();
@@ -15,7 +16,7 @@ public class Soldier : MonoBehaviour
     }
     IEnumerator jumping()
     {
-        transform.parent = followTarget.transform.parent;
+        transform.parent = followTarget.transform.parent.GetChild(slotNum).transform;
         Vector3 firstPos = transform.localPosition;
 
         float counter = 0f;
@@ -27,11 +28,11 @@ public class Soldier : MonoBehaviour
             counter += 5 * Time.deltaTime;
             posY = Mathf.Sin(counter);
  
-            transform.localPosition = Vector3.MoveTowards(transform.localPosition, new Vector3(transform.localPosition.x, firstPos.y + posY * 2, -3), 10 * Time.deltaTime);
+            transform.localPosition = Vector3.MoveTowards(transform.localPosition, new Vector3(0, firstPos.y + posY * 2, 0), 10 * Time.deltaTime);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, 0, 0), 400 * Time.deltaTime);
             yield return null;
         }
-        transform.localPosition = new Vector3(transform.localPosition.x, firstPos.y, -3);
+        transform.localPosition = new Vector3(0, firstPos.y, 0);
 
         StartCoroutine(following());
         anim.SetTrigger("walk");

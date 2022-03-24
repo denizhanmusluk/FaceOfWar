@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using TMPro;
 
 public class Fighter : MonoBehaviour,IFightStart
 {
@@ -19,17 +20,32 @@ public class Fighter : MonoBehaviour,IFightStart
    public targetInitialize targetInitialize;
     [SerializeField] ParticleSystem fire;
     Animator anim;
-    
+    [SerializeField] Transform powerCanvas;
+    [SerializeField] public TextMeshProUGUI powerText;
     void Start()
     {
+        powerCanvas.localScale = new Vector3(0, 0, 0);
+
         FightManager.Instance.Add_fightStartObservers(this);
         anim = GetComponent<Animator>();
         //targetInitialize = transform.parent.parent.GetComponent<targetInitialize>();
         healthBar = transform.GetChild(0).GetChild(0).GetComponent<Slider>();
         currentHealth = Maxhealth;
         healthBarSet();
+        StartCoroutine(setScalePowerCanvas(new Vector3(1,1,1)));
 
- 
+    }
+    IEnumerator setScalePowerCanvas(Vector3 targetScale)
+    {
+        float counter = 0;
+        while (counter < 1)
+        {
+            counter += Time.deltaTime;
+            powerCanvas.localScale = Vector3.MoveTowards(powerCanvas.transform.localScale, targetScale, 3 * Time.deltaTime);
+
+            yield return null;
+        }
+        powerCanvas.localScale = targetScale;
     }
     public void firstMove()
     {
@@ -47,6 +63,7 @@ public class Fighter : MonoBehaviour,IFightStart
     }
     public void fightStart()
     {
+        StartCoroutine(setScalePowerCanvas(new Vector3(0,0,0)));
         anim.SetTrigger("walk");
         GameEvents.fightEvent.AddListener(moveTarget);
         GameEvents.fightEvent.AddListener(ApplySteer);
@@ -94,6 +111,7 @@ public class Fighter : MonoBehaviour,IFightStart
     {
         //moveTarget();
         //ApplySteer();
+        //healthBar.transform.LookAt(battleCam.transform);
     }
     public void beDamage(float hitDamage)
     {

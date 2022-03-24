@@ -17,6 +17,7 @@ public class EnemySelection : MonoBehaviour
             selection = Random.Range(0, warriorsPrefab.Length);
             GameObject war = Instantiate(warriorsPrefab[selection], transform.GetChild(i).transform.position, Quaternion.identity);
             war.transform.parent = transform.GetChild(i).transform;
+            war.transform.localRotation = Quaternion.Euler(0, 180, 0);
             init.soldier.Add(war);
             healthText[i].text = war.GetComponent<Fighter>().Maxhealth.ToString();
         }

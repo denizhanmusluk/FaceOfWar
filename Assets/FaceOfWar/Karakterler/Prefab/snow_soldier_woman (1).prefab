@@ -1569,7 +1569,7 @@ Transform:
   m_GameObject: {fileID: 4044236290548972770}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.65, y: 0.65, z: 0.65}
   m_Children:
   - {fileID: 2431353760661657846}
   - {fileID: 6114114933793364914}
@@ -1600,6 +1600,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followTarget: {fileID: 0}
+  slotNum: 0
 --- !u!95 &6671481094345008315
 Animator:
   serializedVersion: 3

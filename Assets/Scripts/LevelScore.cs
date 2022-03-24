@@ -22,8 +22,8 @@ public class LevelScore : MonoBehaviour
     private void Start()
     {
         totalDistance = Vector3.Distance(finishPoint.position, currentPoint.position);
-        slider.value = 0;
-        StartCoroutine(progressBar());
+        //slider.value = 0;
+        //StartCoroutine(progressBar());
     }
     IEnumerator progressBar()
     {

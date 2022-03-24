@@ -19,6 +19,10 @@ using TMPro;
         SoldierCollecting _soldier;
     public TextMeshProUGUI power;
     public float soldierPower;
+    [SerializeField] Material greenMat;
+    [SerializeField] MeshRenderer kurdele;
+    [SerializeField] MeshRenderer hologramGround;
+
     private void Start()
     {
         soldierPower = prefabHologramSoldier.GetComponent<SoldierDrag>().warriourPrefab.GetComponent<Fighter>().Maxhealth;
@@ -46,10 +50,18 @@ using TMPro;
             sequence2.SetLoops(-1, LoopType.Yoyo);
             sequence2.SetRelative(true);
         }
-        private void Update()
+    private void Update()
+    {
+        //hologramSoldier.transform.Rotate(0, 50 * Time.deltaTime, 0);
+        if (soldierCost <= Globals.moneyAmount)
         {
-            //hologramSoldier.transform.Rotate(0, 50 * Time.deltaTime, 0);
+            costText.color = Color.white;
         }
+        else
+        {
+            costText.color = Color.red;
+        }
+    }
 
         private void OnCollisionEnter(Collision other)
         {
@@ -62,9 +74,10 @@ using TMPro;
                 sequence.Kill(this);
                 sequence2.Kill(this);
 
-                if (soldierCost < Globals.moneyAmount)
+                if (soldierCost <= Globals.moneyAmount)
                 {
-                    LevelScore.Instance.MoneyUpdate(-soldierCost);
+                other.GetComponent<PlayerControl>().slotNum++;
+                LevelScore.Instance.MoneyUpdate(-soldierCost);
                     transform.parent.GetChild(0).GetComponent<Collider>().enabled = false;
                     transform.parent.GetChild(1).GetComponent<Collider>().enabled = false;
 
@@ -72,12 +85,16 @@ using TMPro;
                     hologramSoldier.transform.parent = null;
                     Destroy(hologramSoldier);
                     _soldier.GetComponent<Soldier>().followTarget = other.transform;
+                _soldier.GetComponent<Soldier>().slotNum = other.GetComponent<PlayerControl>().slotNum;
                GameObject particle = Instantiate(splashEffect, transform.position, Quaternion.identity);
+                particle.transform.rotation = Quaternion.Euler(-90, 0, 0);
                 particle.transform.localScale = new Vector3(0.16f, 0.16f, 0.16f);
                 other.GetComponent<PlayerControl>().soldierCollect.soldiers.Add(prefabHologramSoldier);
                 other.GetComponent<PlayerControl>().soldierCollect.healtInit(soldierPower);
-
-                
+                other.GetComponent<PlayerControl>().setCam();
+                //
+                kurdele.material = greenMat;
+                hologramGround.material = greenMat;
                 }
                 else
                 {

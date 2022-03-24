@@ -28,15 +28,25 @@ public class PlayerControl : MonoBehaviour, IStartGameObserver
     [SerializeField] GameObject playerParents;
     [SerializeField] public GameObject moneyTarget;
     [SerializeField] public SoldierCollecting soldierCollect;
-    //[SerializeField] CinemachineVirtualCamera cam;
+    [SerializeField] CinemachineVirtualCamera cam;
     Animator anim;
     public enum States { idle, forward, backward }
     public States currentBehaviour;
+    public int slotNum = 0;
     private void Start()
     {
         currentBehaviour = States.idle;
         GameManager.Instance.Add_StartObserver(this);
         anim = GetComponent<Animator>();
+    }
+    public void setCam()
+    {
+        if(slotNum >= 3)
+        {
+
+            cam.GetCinemachineComponent<CinemachineTransposer>().m_YDamping = 1;
+            cam.GetCinemachineComponent<CinemachineTransposer>().m_ZDamping = 3;
+        }
     }
     public void StartGame()
     {
@@ -156,8 +166,8 @@ public class PlayerControl : MonoBehaviour, IStartGameObserver
     {
         while (Vector3.Distance(money.transform.position, moneyTarget.transform.position) > 0.3f)
         {
-            money.transform.position = Vector3.MoveTowards(money.transform.position, moneyTarget.transform.position, (2 / Vector3.Distance(money.transform.position, moneyTarget.transform.position)) * acceleration * Time.deltaTime);
-            money.transform.localScale = Vector3.Lerp(money.transform.localScale, moneyTarget.transform.localScale, acceleration * 0.4f * Time.deltaTime);
+            money.transform.position = Vector3.MoveTowards(money.transform.position, moneyTarget.transform.position, (3 / Vector3.Distance(money.transform.position, moneyTarget.transform.position)) * acceleration * Time.deltaTime);
+            money.transform.localScale = Vector3.Lerp(money.transform.localScale, moneyTarget.transform.localScale, acceleration * 0.3f * Time.deltaTime);
             yield return null;
         }
 

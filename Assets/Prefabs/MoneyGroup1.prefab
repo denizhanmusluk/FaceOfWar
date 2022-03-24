@@ -1764,7 +1764,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selecting: 0
-  moneyValue: 10
+  moneyValue: 50
 --- !u!1 &1375132640208086082
 GameObject:
   m_ObjectHideFlags: 0
@@ -2071,7 +2071,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selecting: 0
-  moneyValue: 10
+  moneyValue: 50
 --- !u!1 &1820803555826103573
 GameObject:
   m_ObjectHideFlags: 0
@@ -2540,7 +2540,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selecting: 0
-  moneyValue: 10
+  moneyValue: 50
 --- !u!1 &2224661809933180434
 GameObject:
   m_ObjectHideFlags: 0
@@ -2766,7 +2766,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selecting: 0
-  moneyValue: -20
+  moneyValue: -100
 --- !u!1 &2285171626037543930
 GameObject:
   m_ObjectHideFlags: 0
@@ -3397,7 +3397,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selecting: 0
-  moneyValue: 10
+  moneyValue: 50
 --- !u!1 &3144576022108193510
 GameObject:
   m_ObjectHideFlags: 0
@@ -3461,7 +3461,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selecting: 0
-  moneyValue: 10
+  moneyValue: 50
 --- !u!1 &3236951824434993695
 GameObject:
   m_ObjectHideFlags: 0
@@ -3687,7 +3687,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selecting: 0
-  moneyValue: 10
+  moneyValue: 50
 --- !u!1 &3370443092028092521
 GameObject:
   m_ObjectHideFlags: 0
@@ -3994,7 +3994,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selecting: 0
-  moneyValue: 10
+  moneyValue: 50
 --- !u!1 &3611576038421096622
 GameObject:
   m_ObjectHideFlags: 0
@@ -4058,7 +4058,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selecting: 0
-  moneyValue: -20
+  moneyValue: -100
 --- !u!1 &3707390974619750027
 GameObject:
   m_ObjectHideFlags: 0
@@ -4122,7 +4122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selecting: 0
-  moneyValue: 10
+  moneyValue: 50
 --- !u!1 &3848061884852895152
 GameObject:
   m_ObjectHideFlags: 0
@@ -4753,7 +4753,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selecting: 0
-  moneyValue: 10
+  moneyValue: 50
 --- !u!1 &4283440834804603732
 GameObject:
   m_ObjectHideFlags: 0
@@ -5222,7 +5222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selecting: 0
-  moneyValue: -20
+  moneyValue: -100
 --- !u!1 &4776972473363144208
 GameObject:
   m_ObjectHideFlags: 0
@@ -5853,7 +5853,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selecting: 0
-  moneyValue: 10
+  moneyValue: 50
 --- !u!1 &5635186650263437502
 GameObject:
   m_ObjectHideFlags: 0
@@ -6484,7 +6484,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selecting: 0
-  moneyValue: 10
+  moneyValue: 50
 --- !u!1 &6319451547487392743
 GameObject:
   m_ObjectHideFlags: 0
@@ -6548,7 +6548,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selecting: 0
-  moneyValue: 10
+  moneyValue: 50
 --- !u!1 &6393365843178243222
 GameObject:
   m_ObjectHideFlags: 0
@@ -6612,7 +6612,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selecting: 0
-  moneyValue: 10
+  moneyValue: 50
 --- !u!1 &6398515182161529608
 GameObject:
   m_ObjectHideFlags: 0
@@ -7706,7 +7706,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selecting: 0
-  moneyValue: 10
+  moneyValue: 50
 --- !u!1 &6762655721959638221
 GameObject:
   m_ObjectHideFlags: 0
@@ -8256,7 +8256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selecting: 0
-  moneyValue: 10
+  moneyValue: 50
 --- !u!1 &6762655722421177739
 GameObject:
   m_ObjectHideFlags: 0
@@ -8320,7 +8320,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selecting: 0
-  moneyValue: 10
+  moneyValue: 50
 --- !u!1 &6762655722456355099
 GameObject:
   m_ObjectHideFlags: 0
@@ -8384,7 +8384,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selecting: 0
-  moneyValue: -20
+  moneyValue: -100
 --- !u!1 &6762655722465129048
 GameObject:
   m_ObjectHideFlags: 0
@@ -8772,7 +8772,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selecting: 0
-  moneyValue: 10
+  moneyValue: 50
 --- !u!1 &6762655722795635130
 GameObject:
   m_ObjectHideFlags: 0
@@ -10051,7 +10051,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selecting: 0
-  moneyValue: 10
+  moneyValue: 50
 --- !u!1 &6762655723746744001
 GameObject:
   m_ObjectHideFlags: 0
@@ -10358,7 +10358,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selecting: 0
-  moneyValue: 10
+  moneyValue: 50
 --- !u!1 &6762655723849391355
 GameObject:
   m_ObjectHideFlags: 0
@@ -10503,7 +10503,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selecting: 0
-  moneyValue: 10
+  moneyValue: 50
 --- !u!1 &6866259360133501896
 GameObject:
   m_ObjectHideFlags: 0
@@ -10810,7 +10810,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selecting: 0
-  moneyValue: 10
+  moneyValue: 50
 --- !u!1 &7031839790723840348
 GameObject:
   m_ObjectHideFlags: 0
@@ -11198,7 +11198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selecting: 0
-  moneyValue: 10
+  moneyValue: 50
 --- !u!1 &7483738113225594438
 GameObject:
   m_ObjectHideFlags: 0
@@ -12639,7 +12639,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selecting: 0
-  moneyValue: 10
+  moneyValue: 50
 --- !u!1 &8900422900077589014
 GameObject:
   m_ObjectHideFlags: 0
@@ -12865,7 +12865,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selecting: 0
-  moneyValue: 10
+  moneyValue: 50
 --- !u!1 &9079373565233340553
 GameObject:
   m_ObjectHideFlags: 0
