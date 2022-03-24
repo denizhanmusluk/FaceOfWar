@@ -1346,7 +1346,7 @@ MonoBehaviour:
   attackDistance: 4
   moveSpeed: 2
   damage: 5
-  Maxhealth: 95
+  Maxhealth: 90
   currentHealth: 0
   maxSteerAngle: 10
   targetInitialize: {fileID: 0}

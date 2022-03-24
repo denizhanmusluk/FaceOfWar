@@ -24,12 +24,15 @@ public class Fighter : MonoBehaviour,IFightStart
     [SerializeField] public TextMeshProUGUI powerText;
     void Start()
     {
-        powerCanvas.localScale = new Vector3(0, 0, 0);
-
+        powerCanvas.gameObject.SetActive(true);
+        //powerCanvas.localScale = new Vector3(0, 0, 0);
+        powerText.text = Maxhealth.ToString();
         FightManager.Instance.Add_fightStartObservers(this);
         anim = GetComponent<Animator>();
         //targetInitialize = transform.parent.parent.GetComponent<targetInitialize>();
         healthBar = transform.GetChild(0).GetChild(0).GetComponent<Slider>();
+        healthBar.gameObject.SetActive(false);
+
         currentHealth = Maxhealth;
         healthBarSet();
         StartCoroutine(setScalePowerCanvas(new Vector3(1,1,1)));
@@ -63,6 +66,8 @@ public class Fighter : MonoBehaviour,IFightStart
     }
     public void fightStart()
     {
+        healthBar.gameObject.SetActive(true);
+        powerCanvas.gameObject.SetActive(false);
         StartCoroutine(setScalePowerCanvas(new Vector3(0,0,0)));
         anim.SetTrigger("walk");
         GameEvents.fightEvent.AddListener(moveTarget);

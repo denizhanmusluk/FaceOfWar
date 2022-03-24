@@ -108,7 +108,7 @@ public class SoldierDrag : MonoBehaviour
         {
 			if (Input.GetMouseButtonUp(0))
 			{
-				Destroy(other.GetComponent<Collider>());
+				other.GetComponent<Collider>().enabled = false;
 				soldierDragging = false;
 				GameObject war = Instantiate(warriourPrefab, transform.position, Quaternion.identity);
 				war.transform.parent = other.transform;
@@ -116,7 +116,8 @@ public class SoldierDrag : MonoBehaviour
 				war.transform.parent.parent.GetComponent<targetInitialize>().isItFull();
 				war.GetComponent<Fighter>().targetInitialize = war.transform.parent.parent.GetComponent<targetInitialize>();
 				war.GetComponent<Fighter>().firstMove();
-				Destroy(gameObject);
+				//war.GetComponent<reverseDragSoldier>().transparentSoldier = gameObject;
+				gameObject.SetActive(false);
 				other.GetComponent<PowerCompare>().matSet();
 			}
 		}
