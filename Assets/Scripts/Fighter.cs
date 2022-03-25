@@ -66,7 +66,7 @@ public class Fighter : MonoBehaviour,IFightStart
     }
     public void fightStart()
     {
-        healthBar.gameObject.SetActive(true);
+        transform.GetChild(0).GetChild(0).GetComponent<Slider>().gameObject.SetActive(true);
         powerCanvas.gameObject.SetActive(false);
         StartCoroutine(setScalePowerCanvas(new Vector3(0,0,0)));
         anim.SetTrigger("walk");

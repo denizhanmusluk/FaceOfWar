@@ -22,7 +22,8 @@ public	bool soldierDragging = true;
 		firstY = transform.position.y;
 		minScale = new Vector3(0.5f, 0.5f, 0.5f);
 		firstScale = transform.localScale;
-		firstPosition = transform.position;
+		firstPosition = Vector3.zero;
+		//firstPosition = transform.position;
 		//healthText.text = warriourPrefab.GetComponent<Fighter>().Maxhealth.ToString();
     }
 	void OnMouseDown()
@@ -64,15 +65,15 @@ public	bool soldierDragging = true;
 	}
 	IEnumerator moveToFirstPoint()
     {
-		while( Vector3.Distance(firstPosition, transform.position) > 0.1f)
+		while( Vector3.Distance(firstPosition, transform.localPosition) > 0.1f)
         {
-			transform.position = Vector3.MoveTowards(transform.position, firstPosition, 30 * Time.deltaTime);
+			transform.localPosition = Vector3.MoveTowards(transform.localPosition, firstPosition, 30 * Time.deltaTime);
 			transform.localScale = Vector3.MoveTowards(transform.localScale, firstScale, 15 * Time.deltaTime);
 			//powerCanvas.localScale = Vector3.MoveTowards(powerCanvas.transform.localScale, new Vector3(0,0,0),5* Time.deltaTime);
 
 			yield return null;
         }
-		transform.position = firstPosition;
+		transform.localPosition = firstPosition;
 		transform.localScale = firstScale;
 		//powerCanvas.localScale = new Vector3(0, 0, 0);
 		GetComponent<Collider>().enabled = true;
@@ -113,7 +114,8 @@ public	bool soldierDragging = true;
         {
 			if (Input.GetMouseButtonUp(0))
 			{
-				other.GetComponent<Collider>().enabled = false;
+				other.GetComponent<CapsuleCollider>().enabled = false;
+				other.GetComponent<BoxCollider>().enabled = false;
 				soldierDragging = false;
 				GameObject war = Instantiate(warriourPrefab, transform.position, Quaternion.identity);
 				war.transform.parent = other.transform;
@@ -124,6 +126,9 @@ public	bool soldierDragging = true;
 				war.GetComponent<reverseDragSoldier>().transparentSoldier = gameObject;
 				gameObject.SetActive(false);
 				other.GetComponent<PowerCompare>().matSet();
+				transform.parent.parent.GetComponent<BaseSlots>().slots.Remove(transform.parent.gameObject);
+				transform.parent.GetComponent<slot>().active = false;
+				transform.parent.parent.GetComponent<BaseSlots>().listSet();
 			}
 		}
 	}

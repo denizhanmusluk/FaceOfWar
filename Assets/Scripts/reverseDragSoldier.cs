@@ -6,7 +6,7 @@ public class reverseDragSoldier : MonoBehaviour
 {
 	private Vector3 screenPoint;
 	private Vector3 offset;
-	bool drag = true;
+public	bool drag = true;
 	public GameObject transparentSoldier;
 	void Update()
 	{
@@ -25,16 +25,24 @@ public class reverseDragSoldier : MonoBehaviour
 
 					//transparentSoldier.GetComponent<SoldierDrag>().soldierDragging = true;
 					raycastHit.collider.GetComponent<reverseDragSoldier>().transparentSoldier.GetComponent<SoldierDrag>().moveFirst();
+					raycastHit.collider.GetComponent<reverseDragSoldier>().transparentSoldier.transform.parent.GetComponent<slot>().active = true;
+				//raycastHit.collider.GetComponent<reverseDragSoldier>().transparentSoldier.transform.parent.parent.GetComponent<BaseSlots>().slots.Add(raycastHit.collider.GetComponent<reverseDragSoldier>().transparentSoldier.transform.parent.gameObject);
+					raycastHit.collider.GetComponent<reverseDragSoldier>().transparentSoldier.transform.parent.parent.GetComponent<BaseSlots>().listSet();
+					//raycastHit.collider.GetComponent<reverseDragSoldier>().transparentSoldier.transform.parent.parent.GetComponent<BaseSlots>().positionSet();
+
 					//dragActive = false;
 					raycastHit.collider.GetComponent<reverseDragSoldier>().drag = false;
 
-					raycastHit.collider.transform.parent.GetComponent<Collider>().enabled = true;
+					raycastHit.collider.transform.parent.GetComponent<CapsuleCollider>().enabled = true;
+					raycastHit.collider.transform.parent.GetComponent<BoxCollider>().enabled = true;
 					raycastHit.collider.transform.parent.GetComponent<PowerCompare>().firstMatInit();
 
 					raycastHit.collider.transform.parent.parent.GetComponent<targetInitialize>().soldier.Remove(raycastHit.collider.gameObject);
 
 					raycastHit.collider.transform.parent = null;
-                    Destroy(raycastHit.collider.gameObject,0.1f);
+					FightManager.Instance.Remove_fightStartObservers(this.GetComponent<Fighter>());
+
+					Destroy(raycastHit.collider.gameObject,0.1f);
 
 			
 

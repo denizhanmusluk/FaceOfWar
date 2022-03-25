@@ -26,7 +26,9 @@ public class targetInitialize : MonoBehaviour, IFightStart
             soldier[i].GetComponent<Fighter>().targetInitialize = this;
 
             soldier[i].GetComponent<Fighter>().attackTarget = otherBase.soldier[i];
+          
         }
+ 
     }
     public void isItFull()
     {
@@ -34,6 +36,10 @@ public class targetInitialize : MonoBehaviour, IFightStart
         if (soldier.Count == 5)
         {
             FightManager.Instance.Notify_GameFinishObservers();
+            for(int i = 0; i< soldier.Count; i++)
+            {
+                soldier[i].GetComponent<Collider>().enabled = false;
+            }
             Debug.Log("full");
         }
     }

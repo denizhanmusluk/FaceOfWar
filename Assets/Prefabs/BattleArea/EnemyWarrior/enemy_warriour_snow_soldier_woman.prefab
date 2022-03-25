@@ -4276,8 +4276,8 @@ MonoBehaviour:
   attackActive: 1
   alive: 1
   attackTarget: {fileID: 0}
-  attackDistance: 3
-  moveSpeed: 1
+  attackDistance: 4
+  moveSpeed: 2
   damage: 5
   Maxhealth: 75
   currentHealth: 0
@@ -48646,6 +48646,10 @@ PrefabInstance:
     - target: {fileID: 4454011084875204599, guid: df11d6305385dd548b25bfa67f5d4355, type: 3}
       propertyPath: m_Color.a
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449055793821506077, guid: df11d6305385dd548b25bfa67f5d4355, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 6537418174764296163, guid: df11d6305385dd548b25bfa67f5d4355, type: 3}
       propertyPath: m_fontColor.a
