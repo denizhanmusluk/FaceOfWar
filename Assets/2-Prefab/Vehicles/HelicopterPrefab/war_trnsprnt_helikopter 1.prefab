@@ -1470,7 +1470,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5449629
+  m_Radius: 0.26
   m_Height: 3.1693575
   m_Direction: 2
   m_Center: {x: -0.025063008, y: 1.7519579, z: -0.5892838}
@@ -1486,6 +1486,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d02623c1a2344b544a6b709f248f3ac9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dragActive: 1
+  soldierDragging: 1
   warriourPrefab: {fileID: 7294955607123964625, guid: 2ef23f258d0c23141996bec908e7b670, type: 3}
   powerText: {fileID: 5777024012105700121}
   powerCanvas: {fileID: 3988602613994735397}

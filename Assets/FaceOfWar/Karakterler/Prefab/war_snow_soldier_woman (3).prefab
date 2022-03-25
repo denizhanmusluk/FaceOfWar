@@ -4225,6 +4225,7 @@ GameObject:
   - component: {fileID: 1885259051424820896}
   - component: {fileID: 1885259051424820897}
   - component: {fileID: 7405292043487641707}
+  - component: {fileID: 8659812132202860636}
   m_Layer: 0
   m_Name: war_snow_soldier_woman (3)
   m_TagString: soldier
@@ -4331,7 +4332,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.4
+  m_Radius: 0.11
   m_Height: 1.5443817
   m_Direction: 1
   m_Center: {x: -0.0024605393, y: 0.7604596, z: 0}
@@ -4347,6 +4348,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5248ba455cc64f84a83d727eada187c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8659812132202860636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1885259051424820911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7835bbf8a3e6bf94390a315e73d18a33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transparentSoldier: {fileID: 0}
 --- !u!1 &1885259051439173098
 GameObject:
   m_ObjectHideFlags: 0
@@ -48629,6 +48643,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df11d6305385dd548b25bfa67f5d4355, type: 3}
+--- !u!224 &872213929941768674 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4454011084783596511, guid: df11d6305385dd548b25bfa67f5d4355, type: 3}
+  m_PrefabInstance: {fileID: 3590893414549170749}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &7740836430216957406 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6537418174764296163, guid: df11d6305385dd548b25bfa67f5d4355, type: 3}
@@ -48640,8 +48659,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &872213929941768674 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4454011084783596511, guid: df11d6305385dd548b25bfa67f5d4355, type: 3}
-  m_PrefabInstance: {fileID: 3590893414549170749}
-  m_PrefabAsset: {fileID: 0}

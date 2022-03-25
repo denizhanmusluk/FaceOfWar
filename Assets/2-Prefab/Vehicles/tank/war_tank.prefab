@@ -1263,9 +1263,10 @@ GameObject:
   - component: {fileID: 4298916989204068212}
   - component: {fileID: -130689262042919852}
   - component: {fileID: 4372982114432805188}
+  - component: {fileID: 2325155022882598925}
   m_Layer: 0
   m_Name: war_tank
-  m_TagString: Untagged
+  m_TagString: soldier
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1384,6 +1385,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5248ba455cc64f84a83d727eada187c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2325155022882598925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9160952000705331969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7835bbf8a3e6bf94390a315e73d18a33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transparentSoldier: {fileID: 0}
 --- !u!1001 &836421027409704685
 PrefabInstance:
   m_ObjectHideFlags: 0

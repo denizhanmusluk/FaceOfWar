@@ -37,7 +37,7 @@ public class Ragdoll : MonoBehaviour
 
         //rest
         animator.enabled = !active;
-        //Rigidbody.detectCollisions = !active;
+        Rigidbody.detectCollisions = !active;
         Rigidbody.isKinematic = false;
         capsuleCollider.enabled = !active;
     }

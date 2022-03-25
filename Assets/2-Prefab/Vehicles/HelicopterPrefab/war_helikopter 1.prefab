@@ -2446,9 +2446,10 @@ GameObject:
   - component: {fileID: -5170437693083390431}
   - component: {fileID: -7930659057939033108}
   - component: {fileID: -2284566638514387486}
+  - component: {fileID: 2744191189828008785}
   m_Layer: 0
   m_Name: war_helikopter 1
-  m_TagString: Untagged
+  m_TagString: soldier
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2577,6 +2578,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5248ba455cc64f84a83d727eada187c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2744191189828008785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7294955607123964625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7835bbf8a3e6bf94390a315e73d18a33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transparentSoldier: {fileID: 0}
 --- !u!1 &8263205640466429109
 GameObject:
   m_ObjectHideFlags: 0
@@ -3129,11 +3143,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df11d6305385dd548b25bfa67f5d4355, type: 3}
---- !u!224 &2538411395037717115 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4454011084783596511, guid: df11d6305385dd548b25bfa67f5d4355, type: 3}
-  m_PrefabInstance: {fileID: 2230949556737757604}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &4921449214026282567 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6537418174764296163, guid: df11d6305385dd548b25bfa67f5d4355, type: 3}
@@ -3145,6 +3154,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &2538411395037717115 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4454011084783596511, guid: df11d6305385dd548b25bfa67f5d4355, type: 3}
+  m_PrefabInstance: {fileID: 2230949556737757604}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2537976915558011078
 PrefabInstance:
   m_ObjectHideFlags: 0

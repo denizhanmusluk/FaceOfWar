@@ -7,8 +7,8 @@ public class SoldierDrag : MonoBehaviour
 	private Vector3 screenPoint;
 	private Vector3 offset;
 	private Vector3 firstPosition;
-	bool dragActive = true;
-	bool soldierDragging = true;
+public	bool dragActive = true;
+public	bool soldierDragging = true;
 	[SerializeField] public GameObject warriourPrefab;
 	[SerializeField] public TextMeshProUGUI powerText;
 	Vector3 firstScale;
@@ -52,11 +52,15 @@ public class SoldierDrag : MonoBehaviour
 		dragActive = false;
 		if (soldierDragging)
 		{
-			StartCoroutine(moveToFirstPoint());
-			StartCoroutine(setScalePowerCanvas(new Vector3(0,0,0)));
-			transform.parent.GetChild(0).GetChild(0).GetComponent<Light>().enabled = true;
+			moveFirst();
 
 		}
+	}
+	public void moveFirst()
+    {
+		StartCoroutine(moveToFirstPoint());
+		StartCoroutine(setScalePowerCanvas(new Vector3(0, 0, 0)));
+		transform.parent.GetChild(0).GetChild(0).GetComponent<Light>().enabled = true;
 	}
 	IEnumerator moveToFirstPoint()
     {
@@ -71,8 +75,9 @@ public class SoldierDrag : MonoBehaviour
 		transform.position = firstPosition;
 		transform.localScale = firstScale;
 		//powerCanvas.localScale = new Vector3(0, 0, 0);
-
+		GetComponent<Collider>().enabled = true;
 		dragActive = true;
+		soldierDragging = true;
 		transform.GetComponent<illusion>().tweenScale();
 
 	}
@@ -116,7 +121,7 @@ public class SoldierDrag : MonoBehaviour
 				war.transform.parent.parent.GetComponent<targetInitialize>().isItFull();
 				war.GetComponent<Fighter>().targetInitialize = war.transform.parent.parent.GetComponent<targetInitialize>();
 				war.GetComponent<Fighter>().firstMove();
-				//war.GetComponent<reverseDragSoldier>().transparentSoldier = gameObject;
+				war.GetComponent<reverseDragSoldier>().transparentSoldier = gameObject;
 				gameObject.SetActive(false);
 				other.GetComponent<PowerCompare>().matSet();
 			}

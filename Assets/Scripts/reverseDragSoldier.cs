@@ -6,14 +6,12 @@ public class reverseDragSoldier : MonoBehaviour
 {
 	private Vector3 screenPoint;
 	private Vector3 offset;
-	bool dragActive = true;
-	bool soldierDragging = true;
+	bool drag = true;
 	public GameObject transparentSoldier;
 	void Update()
 	{
-		if (Input.GetMouseButtonDown(0))
+		if (Input.GetMouseButtonDown(0) && drag)
 		{
-			Debug.Log("soldier");
 
 			Ray raycast = Camera.main.ScreenPointToRay(Input.mousePosition);
 			RaycastHit raycastHit;
@@ -21,14 +19,27 @@ public class reverseDragSoldier : MonoBehaviour
 			{
 				if (raycastHit.collider.tag == "soldier")
 				{
-					transform.parent.GetComponent<Collider>().enabled = true;
+					Debug.Log("soldier");
+					raycastHit.collider.GetComponent<reverseDragSoldier>().transparentSoldier.SetActive(true);
+					raycastHit.collider.GetComponent<reverseDragSoldier>().transparentSoldier.GetComponent<Collider>().enabled = false;
 
-					transparentSoldier.SetActive(true);
-					Destroy(gameObject);
-					dragActive = false;
-					soldierDragging = false;
+					//transparentSoldier.GetComponent<SoldierDrag>().soldierDragging = true;
+					raycastHit.collider.GetComponent<reverseDragSoldier>().transparentSoldier.GetComponent<SoldierDrag>().moveFirst();
+					//dragActive = false;
+					raycastHit.collider.GetComponent<reverseDragSoldier>().drag = false;
 
-					transform.parent.parent.GetComponent<targetInitialize>().soldier.Remove(gameObject);
+					raycastHit.collider.transform.parent.GetComponent<Collider>().enabled = true;
+					raycastHit.collider.transform.parent.GetComponent<PowerCompare>().firstMatInit();
+
+					raycastHit.collider.transform.parent.parent.GetComponent<targetInitialize>().soldier.Remove(raycastHit.collider.gameObject);
+
+					raycastHit.collider.transform.parent = null;
+                    Destroy(raycastHit.collider.gameObject,0.1f);
+
+			
+
+					//transform.parent.parent.GetComponent<targetInitialize>().soldier = new List<GameObject>(transform.parent.parent.GetComponent<targetInitialize>().soldier.Count - 1);
+					//transform.parent.parent.GetComponent<targetInitialize>().soldier = new List<GameObject>(0);
 				
 				}
 			}
