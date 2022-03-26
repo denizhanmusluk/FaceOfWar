@@ -22,6 +22,7 @@ using TMPro;
     [SerializeField] Material greenMat;
     [SerializeField] MeshRenderer kurdele;
     [SerializeField] MeshRenderer hologramGround;
+    [SerializeField] Transform hologram, canvas, kurde;
 
     private void Start()
     {
@@ -55,11 +56,11 @@ using TMPro;
         //hologramSoldier.transform.Rotate(0, 50 * Time.deltaTime, 0);
         if (soldierCost <= Globals.moneyAmount)
         {
-            costText.color = Color.white;
+            costText.color = new Color32(50, 173, 67, 255);
         }
         else
         {
-            costText.color = Color.red;
+            costText.color = new Color32(106, 106,106, 255);
         }
     }
 
@@ -71,6 +72,7 @@ using TMPro;
         {
             if (other.tag == "Player")
             {
+            StartCoroutine(setScale());
                 sequence.Kill(this);
                 sequence2.Kill(this);
 
@@ -88,7 +90,7 @@ using TMPro;
                 _soldier.GetComponent<Soldier>().slotNum = other.GetComponent<PlayerControl>().slotNum;
                GameObject particle = Instantiate(splashEffect, transform.position, Quaternion.identity);
                 particle.transform.rotation = Quaternion.Euler(-90, 0, 0);
-                particle.transform.localScale = new Vector3(0.16f, 0.16f, 0.16f);
+                particle.transform.localScale = new Vector3(1, 1, 1);
                 other.GetComponent<PlayerControl>().soldierCollect.soldiers.Add(prefabHologramSoldier);
                 other.GetComponent<PlayerControl>().soldierCollect.healtInit(soldierPower);
                 other.GetComponent<PlayerControl>().setCam();
@@ -105,4 +107,16 @@ using TMPro;
                 }
             }
         }
+    IEnumerator setScale()
+    {
+        while (hologram.localScale.x >0.1f)
+        {
+        
+                hologram.localScale = Vector3.Lerp(hologram.localScale, new Vector3(0, 0, 0), 2 * Time.deltaTime);
+                canvas.localScale = Vector3.Lerp(canvas.localScale, new Vector3(0, 0, 0), 2 * Time.deltaTime);
+                kurde.localScale = Vector3.Lerp(kurde.localScale, new Vector3(0, 0, 0), 2 * Time.deltaTime);
+            
+            yield return null;
+        }
+    }
     }

@@ -33,6 +33,7 @@ public class PlayerControl : MonoBehaviour, IStartGameObserver
     public enum States { idle, forward, backward }
     public States currentBehaviour;
     public int slotNum = 0;
+    [SerializeField] GameObject moneyParticlePrefab;
     private void Start()
     {
         currentBehaviour = States.idle;
@@ -158,6 +159,7 @@ public class PlayerControl : MonoBehaviour, IStartGameObserver
             //other.gameObject.GetComponent<Player>().MoneyUpdate(30);
             //Score.Instance.scoreUp();
             StartCoroutine(targetMotion(other.gameObject));
+            GameObject moneyPrticle = Instantiate(moneyParticlePrefab, other.transform.position, Quaternion.identity);
         }
     }
 
