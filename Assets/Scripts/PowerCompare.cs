@@ -15,16 +15,16 @@ public class PowerCompare : MonoBehaviour
     }
     public void matSet()
     {
-        if (enemySlot.transform.GetChild(1).GetComponent<Fighter>().Maxhealth >transform.GetChild(0).GetComponent<Fighter>().Maxhealth)
-        {
-            slotGround.material = red;
-            EnemySlotGround.material = green;
-        }
-        else
-        {
-            slotGround.material = green;
-            EnemySlotGround.material = red;
-        }
+        //if (enemySlot.transform.GetChild(1).GetComponent<Fighter>().Maxhealth >transform.GetChild(0).GetComponent<Fighter>().Maxhealth)
+        //{
+        //    slotGround.material = red;
+        //    EnemySlotGround.material = green;
+        //}
+        //else
+        //{
+        //    slotGround.material = green;
+        //    EnemySlotGround.material = red;
+        //}
     }
     public void firstMatInit()
     {

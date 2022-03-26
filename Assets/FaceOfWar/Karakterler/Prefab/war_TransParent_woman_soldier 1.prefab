@@ -1050,6 +1050,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d02623c1a2344b544a6b709f248f3ac9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dragActive: 1
+  soldierDragging: 1
   warriourPrefab: {fileID: 2388363278605248388, guid: fc017d4cc3ddf17448a5f844a974a3b4, type: 3}
   powerText: {fileID: 1639501084460195824}
   powerCanvas: {fileID: 8193998006793636812}
@@ -3403,6 +3405,18 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4454011084783596511, guid: df11d6305385dd548b25bfa67f5d4355, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454011084783596511, guid: df11d6305385dd548b25bfa67f5d4355, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454011084783596511, guid: df11d6305385dd548b25bfa67f5d4355, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454011084783596511, guid: df11d6305385dd548b25bfa67f5d4355, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -3450,6 +3464,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4454011084875204599, guid: df11d6305385dd548b25bfa67f5d4355, type: 3}
+      propertyPath: m_Color.a
+      value: 0.9137255
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454011084875204599, guid: df11d6305385dd548b25bfa67f5d4355, type: 3}
+      propertyPath: m_Color.b
+      value: 0.94509804
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454011084875204599, guid: df11d6305385dd548b25bfa67f5d4355, type: 3}
+      propertyPath: m_Color.g
+      value: 0.5568628
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454011084875204599, guid: df11d6305385dd548b25bfa67f5d4355, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6537418174764296163, guid: df11d6305385dd548b25bfa67f5d4355, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 60b780b118bfcd1499dfafea9886b55d, type: 2}
+    - target: {fileID: 6537418174764296163, guid: df11d6305385dd548b25bfa67f5d4355, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 650568330195833086, guid: 60b780b118bfcd1499dfafea9886b55d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df11d6305385dd548b25bfa67f5d4355, type: 3}
 --- !u!224 &8193998006793636812 stripped

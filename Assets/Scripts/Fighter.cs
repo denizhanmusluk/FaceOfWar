@@ -35,8 +35,10 @@ public class Fighter : MonoBehaviour,IFightStart
 
         currentHealth = Maxhealth;
         healthBarSet();
-        StartCoroutine(setScalePowerCanvas(new Vector3(1,1,1)));
-
+        if (transform.parent.parent.GetComponent<EnemySelection>() == null)
+        {
+            StartCoroutine(setScalePowerCanvas(new Vector3(1, 1, 1)));
+        }
     }
     IEnumerator setScalePowerCanvas(Vector3 targetScale)
     {
@@ -68,7 +70,10 @@ public class Fighter : MonoBehaviour,IFightStart
     {
         transform.GetChild(0).GetChild(0).GetComponent<Slider>().gameObject.SetActive(true);
         powerCanvas.gameObject.SetActive(false);
-        StartCoroutine(setScalePowerCanvas(new Vector3(0,0,0)));
+        if (transform.parent.parent.GetComponent<EnemySelection>() == null)
+        {
+            StartCoroutine(setScalePowerCanvas(new Vector3(0, 0, 0)));
+        }
         anim.SetTrigger("walk");
         GameEvents.fightEvent.AddListener(moveTarget);
         GameEvents.fightEvent.AddListener(ApplySteer);

@@ -41,7 +41,7 @@ using TMPro;
             sequence = DOTween.Sequence();
             sequence2 = DOTween.Sequence();
             sequence.Append(hologramSoldier.transform.DOMoveY(0.05f, 0.4f).SetLoops(-1, LoopType.Yoyo));
-            sequence2.Append(hologramSoldier.transform.DORotate(new Vector3(0, 45, 0), 0.8f).SetLoops(-1, LoopType.Yoyo));
+            sequence2.Append(hologramSoldier.transform.DORotate(new Vector3(0, 25, 0), 1.5f).SetLoops(-1, LoopType.Yoyo));
 
             sequence.AppendInterval(0f);
             sequence.SetLoops(-1, LoopType.Yoyo);
