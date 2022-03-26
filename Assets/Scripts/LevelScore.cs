@@ -51,7 +51,7 @@ public class LevelScore : MonoBehaviour
         }
         LeanTween.value(moneyOld, Globals.moneyAmount, 0.2f).setOnUpdate((float val) =>
         {
-            moneyLabel.text = val.ToString("N0");
+            moneyLabel.text = ((int)val).ToString();
         });//.setOnComplete(() =>{});
         StartCoroutine(setScale());
     }

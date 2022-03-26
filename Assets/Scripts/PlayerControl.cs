@@ -156,7 +156,6 @@ public class PlayerControl : MonoBehaviour, IStartGameObserver
         if (other.transform.tag == "money")
         {
             //other.gameObject.GetComponent<Player>().MoneyUpdate(30);
-            LevelScore.Instance.MoneyUpdate(other.transform.GetComponent<MoneyCollecting>().moneyValue);
             //Score.Instance.scoreUp();
             StartCoroutine(targetMotion(other.gameObject));
         }
@@ -170,6 +169,7 @@ public class PlayerControl : MonoBehaviour, IStartGameObserver
             money.transform.localScale = Vector3.Lerp(money.transform.localScale, moneyTarget.transform.localScale, acceleration * 0.3f * Time.deltaTime);
             yield return null;
         }
+        LevelScore.Instance.MoneyUpdate(money.transform.GetComponent<MoneyCollecting>().moneyValue);
 
         money.transform.parent = null;
         Destroy(money);

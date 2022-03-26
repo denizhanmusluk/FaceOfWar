@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver, IEndGameO
     [SerializeField] GameObject ProgressBar;
     public TextMeshProUGUI moneyLabel;
 
+    [SerializeField] RectTransform successImage, failImage;
+    float firstImageScale = 10;
+
     [SerializeField] CinemachineVirtualCamera camFirst, camMain;
     //[SerializeField] GameObject confetti;
     void Awake()
@@ -102,9 +105,11 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver, IEndGameO
     }
     IEnumerator Fail_Delay()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(0.1f);
 
         failPanel.SetActive(true);
+        failImage.localScale = new Vector3(firstImageScale, firstImageScale, firstImageScale);
+        StartCoroutine(panelScaleSet(failImage));
 
     }
     public void WinScenario()
@@ -124,6 +129,30 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver, IEndGameO
         yield return new WaitForSeconds(0.1f);
 
         successPanel.SetActive(true);
+        successImage.localScale = new Vector3(firstImageScale, firstImageScale, firstImageScale); 
+        StartCoroutine(panelScaleSet(successImage));
+    }
+    IEnumerator panelScaleSet(RectTransform image)
+    {
+        float counter = firstImageScale;
+        while (counter > 1)
+        {
+            counter -= 20 * Time.deltaTime;
+            image.localScale = new Vector3(counter, counter, counter);
+            yield return null;
+        }
+        image.localScale = new Vector3(1, 1, 1);
+        counter = 0f;
+        float scale = 0;
+        while (counter < Mathf.PI)
+        {
+            counter += 20 * Time.deltaTime;
+            scale = Mathf.Sin(counter);
+            scale *= 0.3f;
+            image.localScale = new Vector3(1 - scale, 1- scale, 1- scale);
+            yield return null;
+        }
+        image.localScale = new Vector3(1, 1, 1);
 
     }
     public void GameEnd()
