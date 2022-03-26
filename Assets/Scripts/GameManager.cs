@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver, IEndGameO
 
     [SerializeField] RectTransform successImage, failImage;
     float firstImageScale = 10;
+    float lastImageScale = 0.7f;
 
     [SerializeField] CinemachineVirtualCamera camFirst, camMain;
     //[SerializeField] GameObject confetti;
@@ -135,24 +136,24 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver, IEndGameO
     IEnumerator panelScaleSet(RectTransform image)
     {
         float counter = firstImageScale;
-        while (counter > 1)
+        while (counter > lastImageScale)
         {
             counter -= 20 * Time.deltaTime;
             image.localScale = new Vector3(counter, counter, counter);
             yield return null;
         }
-        image.localScale = new Vector3(1, 1, 1);
+        image.localScale = new Vector3(lastImageScale, lastImageScale, lastImageScale);
         counter = 0f;
         float scale = 0;
         while (counter < Mathf.PI)
         {
-            counter += 20 * Time.deltaTime;
+            counter += 10 * Time.deltaTime;
             scale = Mathf.Sin(counter);
             scale *= 0.3f;
-            image.localScale = new Vector3(1 - scale, 1- scale, 1- scale);
+            image.localScale = new Vector3(lastImageScale - scale, lastImageScale - scale, lastImageScale - scale);
             yield return null;
         }
-        image.localScale = new Vector3(1, 1, 1);
+        image.localScale = new Vector3(lastImageScale, lastImageScale, lastImageScale);
 
     }
     public void GameEnd()

@@ -1344,8 +1344,8 @@ MonoBehaviour:
   attackActive: 1
   alive: 1
   attackTarget: {fileID: 0}
-  attackDistance: 4
-  moveSpeed: 2
+  attackDistance: 5
+  moveSpeed: 2.5
   damage: 5
   Maxhealth: 90
   currentHealth: 0

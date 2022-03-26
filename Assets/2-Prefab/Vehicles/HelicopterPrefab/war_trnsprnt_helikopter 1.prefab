@@ -1953,10 +1953,26 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6449055793821506077, guid: df11d6305385dd548b25bfa67f5d4355, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 297.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6537418174764296163, guid: df11d6305385dd548b25bfa67f5d4355, type: 3}
+      propertyPath: m_text
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6537418174764296163, guid: df11d6305385dd548b25bfa67f5d4355, type: 3}
+      propertyPath: m_fontSize
+      value: 140
+      objectReference: {fileID: 0}
     - target: {fileID: 6537418174764296163, guid: df11d6305385dd548b25bfa67f5d4355, type: 3}
       propertyPath: m_fontAsset
       value: 
       objectReference: {fileID: 11400000, guid: 60b780b118bfcd1499dfafea9886b55d, type: 2}
+    - target: {fileID: 6537418174764296163, guid: df11d6305385dd548b25bfa67f5d4355, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 140
+      objectReference: {fileID: 0}
     - target: {fileID: 6537418174764296163, guid: df11d6305385dd548b25bfa67f5d4355, type: 3}
       propertyPath: m_sharedMaterial
       value: 
