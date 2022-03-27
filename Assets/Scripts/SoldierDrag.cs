@@ -145,7 +145,7 @@ public class SoldierDrag : MonoBehaviour
 		{
 			Debug.Log("deneme3");
 
-			float distance = 5;
+			float distance = 8;
 			GameObject targetPoint;
 
 			for (int i = 0; i < baseSlots.transform.childCount; i++)
