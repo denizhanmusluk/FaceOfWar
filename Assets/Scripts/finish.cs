@@ -12,6 +12,8 @@ public class finish : MonoBehaviour
     [SerializeField] GameObject inGameCanvas;
     [SerializeField] GameObject money;
     [SerializeField] LevelScore lvlScore;
+    [SerializeField] CinemachineVirtualCamera finish1Cam;
+
     private void Start()
     {
         finalParticles.SetActive(false);
@@ -39,5 +41,6 @@ public class finish : MonoBehaviour
         player.currentBehaviour = PlayerControl.States.idle;
         Destroy(player.transform.parent.gameObject);
         battleArea.SetActive(true);
+        finish1Cam.Priority = 20;
     }
 }

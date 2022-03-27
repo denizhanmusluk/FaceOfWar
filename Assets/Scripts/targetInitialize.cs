@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class targetInitialize : MonoBehaviour, IFightStart
 {
     [SerializeField] public targetInitialize otherBase;
     [SerializeField] public List<GameObject> soldier;
+    [SerializeField] GameObject battleCam, mainCam;
+    [SerializeField] CinemachineVirtualCamera  finCam2;
     private void Start()
     {
         FightManager.Instance.Add_fightStartObservers(this);
@@ -63,6 +66,15 @@ public class targetInitialize : MonoBehaviour, IFightStart
             {
                 otherBase.soldier[i].GetComponent<Animator>().SetTrigger("win");
             }
+            battleCam.SetActive(false);
+            mainCam.SetActive(true);
+            StartCoroutine(camDelay());
         }
+    }
+    IEnumerator camDelay()
+    {
+        yield return new WaitForSeconds(0.2f);
+        finCam2.Priority = 50;
+
     }
 }

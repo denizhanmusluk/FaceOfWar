@@ -106,7 +106,7 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver, IEndGameO
     }
     IEnumerator Fail_Delay()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
 
         failPanel.SetActive(true);
         failImage.localScale = new Vector3(firstImageScale, firstImageScale, firstImageScale);
@@ -127,7 +127,7 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver, IEndGameO
     }
     IEnumerator win_Delay()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
 
         successPanel.SetActive(true);
         successImage.localScale = new Vector3(firstImageScale, firstImageScale, firstImageScale); 
