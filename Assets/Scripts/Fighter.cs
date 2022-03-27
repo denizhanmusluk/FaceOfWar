@@ -58,7 +58,7 @@ public class Fighter : MonoBehaviour,IFightStart
     }
     IEnumerator firstPointMove()
     {
-        while(transform.localPosition != Vector3.zero)
+        while (Vector3.Distance(transform.localPosition, Vector3.zero ) > 0)
         {
             transform.localPosition = Vector3.MoveTowards(transform.localPosition, Vector3.zero, 5 * Time.deltaTime);
             yield return null;

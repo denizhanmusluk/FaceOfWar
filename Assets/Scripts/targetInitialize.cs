@@ -51,15 +51,17 @@ public class targetInitialize : MonoBehaviour, IFightStart
             {
                 Debug.Log("enemy won");
                 GameManager.Instance.Notify_WinObservers();
-                for (int i = 0; i < soldier.Count; i++)
-                {
-                    soldier[i].GetComponent<Animator>().SetTrigger("win");
-                }
+
             }
             if (transform.tag == "base")
             {
                 Debug.Log("you won");
                 GameManager.Instance.Notify_LoseObservers();
+            }
+
+            for (int i = 0; i < otherBase.soldier.Count; i++)
+            {
+                otherBase.soldier[i].GetComponent<Animator>().SetTrigger("win");
             }
         }
     }
