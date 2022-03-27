@@ -10,7 +10,7 @@ public	bool drag = true;
 	public GameObject transparentSoldier;
 	void Update()
 	{
-		if (Input.GetMouseButton(0) && drag)
+		if (Input.GetMouseButtonDown(0) && drag)
 		{
 
 			Ray raycast = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -35,6 +35,7 @@ public	bool drag = true;
 
 					raycastHit.collider.transform.parent.GetComponent<CapsuleCollider>().enabled = true;
 					raycastHit.collider.transform.parent.GetComponent<BoxCollider>().enabled = true;
+					raycastHit.collider.transform.parent.GetComponent<PowerCompare>().sloatActive = true;
 					raycastHit.collider.transform.parent.GetComponent<PowerCompare>().firstMatInit();
 
 					raycastHit.collider.transform.parent.parent.GetComponent<targetInitialize>().soldier.Remove(raycastHit.collider.gameObject);

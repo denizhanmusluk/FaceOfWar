@@ -9,6 +9,7 @@ public class PowerCompare : MonoBehaviour
     [SerializeField] MeshRenderer slotGround;
     [SerializeField] MeshRenderer EnemySlotGround;
   public  Material firstMat;
+    public bool sloatActive = true;
     private void Start()
     {
         firstMat = slotGround.material;

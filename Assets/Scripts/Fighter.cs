@@ -22,6 +22,7 @@ public class Fighter : MonoBehaviour,IFightStart
     Animator anim;
     [SerializeField] Transform powerCanvas;
     [SerializeField] public TextMeshProUGUI powerText;
+    bool firstMoveActive = true;
     void Start()
     {
         powerCanvas.gameObject.SetActive(true);
@@ -58,7 +59,7 @@ public class Fighter : MonoBehaviour,IFightStart
     }
     IEnumerator firstPointMove()
     {
-        while (Vector3.Distance(transform.localPosition, Vector3.zero ) > 0)
+        while (Vector3.Distance(transform.localPosition, Vector3.zero ) > 0.1f && firstMoveActive)
         {
             transform.localPosition = Vector3.MoveTowards(transform.localPosition, Vector3.zero, 5 * Time.deltaTime);
             yield return null;
@@ -68,6 +69,7 @@ public class Fighter : MonoBehaviour,IFightStart
     }
     public void fightStart()
     {
+        firstMoveActive = false;
         transform.GetChild(0).GetChild(0).GetComponent<Slider>().gameObject.SetActive(true);
         powerCanvas.gameObject.SetActive(false);
         if (transform.parent.parent.GetComponent<EnemySelection>() == null)
