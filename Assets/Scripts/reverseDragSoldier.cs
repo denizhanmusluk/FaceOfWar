@@ -10,7 +10,7 @@ public	bool drag = true;
 	public GameObject transparentSoldier;
 	void Update()
 	{
-		if (Input.GetMouseButtonDown(0) && drag)
+		if (Input.GetMouseButton(0) && drag)
 		{
 
 			Ray raycast = Camera.main.ScreenPointToRay(Input.mousePosition);

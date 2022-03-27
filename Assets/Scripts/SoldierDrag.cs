@@ -67,7 +67,7 @@ public	bool soldierDragging = true;
     {
 		while( Vector3.Distance(firstPosition, transform.localPosition) > 0.1f)
         {
-			transform.localPosition = Vector3.MoveTowards(transform.localPosition, firstPosition, 10 * Time.deltaTime);
+			transform.localPosition = Vector3.MoveTowards(transform.localPosition, firstPosition, Vector3.Distance(transform.position, firstPosition) * Time.deltaTime);
 			transform.localScale = Vector3.MoveTowards(transform.localScale, firstScale, 15 * Time.deltaTime);
 			//powerCanvas.localScale = Vector3.MoveTowards(powerCanvas.transform.localScale, new Vector3(0,0,0),5* Time.deltaTime);
 
