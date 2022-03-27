@@ -19,6 +19,8 @@ public	bool drag = true;
 			{
 				if (raycastHit.collider.tag == "soldier")
 				{
+					raycastHit.collider.GetComponent<reverseDragSoldier>().transparentSoldier.transform.parent.GetChild(0).gameObject.SetActive(true);
+					raycastHit.collider.GetComponent<reverseDragSoldier>().transparentSoldier.transform.parent.GetChild(1).gameObject.SetActive(true);
 					Debug.Log("soldier");
 					raycastHit.collider.GetComponent<reverseDragSoldier>().transparentSoldier.SetActive(true);
 					raycastHit.collider.GetComponent<reverseDragSoldier>().transparentSoldier.GetComponent<Collider>().enabled = false;
@@ -28,6 +30,7 @@ public	bool drag = true;
 					raycastHit.collider.GetComponent<reverseDragSoldier>().transparentSoldier.transform.parent.GetComponent<slot>().active = true;
 				//raycastHit.collider.GetComponent<reverseDragSoldier>().transparentSoldier.transform.parent.parent.GetComponent<BaseSlots>().slots.Add(raycastHit.collider.GetComponent<reverseDragSoldier>().transparentSoldier.transform.parent.gameObject);
 					raycastHit.collider.GetComponent<reverseDragSoldier>().transparentSoldier.transform.parent.parent.GetComponent<BaseSlots>().listSet();
+
 					//raycastHit.collider.GetComponent<reverseDragSoldier>().transparentSoldier.transform.parent.parent.GetComponent<BaseSlots>().positionSet();
 
 					//dragActive = false;
@@ -40,9 +43,9 @@ public	bool drag = true;
 
 					raycastHit.collider.transform.parent.parent.GetComponent<targetInitialize>().soldier.Remove(raycastHit.collider.gameObject);
 
-					raycastHit.collider.transform.parent = null;
-					FightManager.Instance.Remove_fightStartObservers(this.GetComponent<Fighter>());
+					FightManager.Instance.Remove_fightStartObservers(raycastHit.collider.GetComponent<Fighter>());
 
+					raycastHit.collider.transform.parent = null;
 					Destroy(raycastHit.collider.gameObject,0.1f);
 
 			

@@ -54,12 +54,13 @@ public class SoldierDrag : MonoBehaviour
 	private void OnMouseUp()
 	{
 		dragActive = false;
+		checkTargetSlot();
+
 		if (soldierDragging)
 		{
 			moveFirst();
 
 		}
-		checkTargetSlot();
 
 	}
 	public void moveFirst()
@@ -139,43 +140,51 @@ public class SoldierDrag : MonoBehaviour
 	}
 	void checkTargetSlot()
 	{
-		Debug.Log("deneme2");
 
 		if (!dragActive)
 		{
-			Debug.Log("deneme3");
+			dragActive = true;
 
 			float distance = 8;
-			GameObject targetPoint;
+			GameObject targetPoint = null;
 
 			for (int i = 0; i < baseSlots.transform.childCount; i++)
 			{
 				if (distance > Vector3.Distance(transform.position, baseSlots.transform.GetChild(i).transform.position) && baseSlots.transform.GetChild(i).GetComponent<PowerCompare>().sloatActive)
                 {
+					Debug.Log("check");
 					distance = Vector3.Distance(transform.position, baseSlots.transform.GetChild(i).transform.position);
 					targetPoint = baseSlots.transform.GetChild(i).gameObject;
-	
-			Debug.Log("deneme");
 
-			targetPoint.GetComponent<CapsuleCollider>().enabled = false;
-			targetPoint.GetComponent<BoxCollider>().enabled = false;
-			targetPoint.GetComponent<PowerCompare>().sloatActive = false;
-
-			soldierDragging = false;
-			GameObject war = Instantiate(warriourPrefab, transform.position, Quaternion.identity);
-			war.transform.parent = targetPoint.transform;
-			war.transform.parent.parent.GetComponent<targetInitialize>().soldier.Add(war);
-			war.transform.parent.parent.GetComponent<targetInitialize>().isItFull();
-			war.GetComponent<Fighter>().targetInitialize = war.transform.parent.parent.GetComponent<targetInitialize>();
-			war.GetComponent<Fighter>().firstMove();
-			war.GetComponent<reverseDragSoldier>().transparentSoldier = gameObject;
-			gameObject.SetActive(false);
-			targetPoint.GetComponent<PowerCompare>().matSet();
-			transform.parent.parent.GetComponent<BaseSlots>().slots.Remove(transform.parent.gameObject);
-			transform.parent.GetComponent<slot>().active = false;
-			transform.parent.parent.GetComponent<BaseSlots>().listSet();
 				}
 
+			}
+
+
+
+
+			if (targetPoint != null)
+			{
+				targetPoint.GetComponent<CapsuleCollider>().enabled = false;
+				targetPoint.GetComponent<BoxCollider>().enabled = false;
+				targetPoint.GetComponent<PowerCompare>().sloatActive = false;
+
+				soldierDragging = false;
+				GameObject war = Instantiate(warriourPrefab, transform.position, Quaternion.identity);
+				war.transform.parent = targetPoint.transform;
+				war.transform.parent.parent.GetComponent<targetInitialize>().soldier.Add(war);
+				war.transform.parent.parent.GetComponent<targetInitialize>().isItFull();
+				war.GetComponent<Fighter>().targetInitialize = war.transform.parent.parent.GetComponent<targetInitialize>();
+				war.GetComponent<Fighter>().firstMove();
+				war.GetComponent<reverseDragSoldier>().transparentSoldier = gameObject;
+				gameObject.SetActive(false);
+				targetPoint.GetComponent<PowerCompare>().matSet();
+				transform.parent.parent.GetComponent<BaseSlots>().slots.Remove(transform.parent.gameObject);
+				transform.parent.GetComponent<slot>().active = false;
+				transform.parent.parent.GetComponent<BaseSlots>().listSet();
+
+				transform.parent.GetChild(0).gameObject.SetActive(false);
+				transform.parent.GetChild(1).gameObject.SetActive(false);
 			}
 		}
 	}
