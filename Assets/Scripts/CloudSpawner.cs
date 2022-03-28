@@ -19,6 +19,7 @@ public class CloudSpawner : MonoBehaviour
            GameObject cloud = Instantiate(clouds[select], transform.position, Quaternion.identity);
             cloud.transform.rotation = Quaternion.Euler(90, 90, 0);
             cloud.transform.position = transform.position + new Vector3(0, Random.Range(-30, 30), 0);
+            cloud.transform.parent = transform;
             StartCoroutine(moving(cloud));
             yield return new WaitForSeconds(10f);
         }

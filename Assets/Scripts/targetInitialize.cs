@@ -7,8 +7,8 @@ public class targetInitialize : MonoBehaviour, IFightStart
 {
     [SerializeField] public targetInitialize otherBase;
     [SerializeField] public List<GameObject> soldier;
-    [SerializeField] GameObject battleCam, mainCam;
-    [SerializeField] CinemachineVirtualCamera  finCam2;
+    //[SerializeField] GameObject battleCam, mainCam;
+    //[SerializeField] CinemachineVirtualCamera  finCam2;
     private void Start()
     {
         FightManager.Instance.Add_fightStartObservers(this);
@@ -31,11 +31,12 @@ public class targetInitialize : MonoBehaviour, IFightStart
             soldier[i].GetComponent<Fighter>().attackTarget = otherBase.soldier[i];
           
         }
- 
+
+        FightManager.Instance.Remove_fightStartObservers(this);
+
     }
     public void isItFull()
     {
-        Debug.Log(soldier.Count);
         if (soldier.Count == 5)
         {
             FightManager.Instance.Notify_GameFinishObservers();
@@ -66,15 +67,15 @@ public class targetInitialize : MonoBehaviour, IFightStart
             {
                 otherBase.soldier[i].GetComponent<Animator>().SetTrigger("win");
             }
-            battleCam.SetActive(false);
-            mainCam.SetActive(true);
-            StartCoroutine(camDelay());
+            //battleCam.SetActive(false);
+            //mainCam.SetActive(true);
+            //StartCoroutine(camDelay());
         }
     }
-    IEnumerator camDelay()
-    {
-        yield return new WaitForSeconds(0.2f);
-        finCam2.Priority = 50;
+    //IEnumerator camDelay()
+    //{
+    //    yield return new WaitForSeconds(0.2f);
+    //    finCam2.Priority = 50;
 
-    }
+    //}
 }

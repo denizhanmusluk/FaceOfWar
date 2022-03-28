@@ -34,8 +34,10 @@ public class PlayerControl : MonoBehaviour, IStartGameObserver
     public States currentBehaviour;
     public int slotNum = 0;
     [SerializeField] GameObject moneyParticlePrefab;
+    Vector3 playerFirstPos;
     private void Start()
     {
+        playerFirstPos = transform.position;
         currentBehaviour = States.idle;
         GameManager.Instance.Add_StartObserver(this);
         anim = GetComponent<Animator>();
@@ -137,12 +139,12 @@ public class PlayerControl : MonoBehaviour, IStartGameObserver
     {
         if (_swipe > 0)
         {
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(bounding, transform.position.y, transform.position.z), Time.deltaTime * Mathf.Abs(_swipe));
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(playerFirstPos.x + bounding, transform.position.y, transform.position.z), Time.deltaTime * Mathf.Abs(_swipe));
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(transform.eulerAngles.x, 45, transform.eulerAngles.z), steeringSpeed * Time.deltaTime);
         }
         if (_swipe < 0)
         {
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(-bounding, transform.position.y, transform.position.z), Time.deltaTime * Mathf.Abs(_swipe));
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(playerFirstPos.x - bounding, transform.position.y, transform.position.z), Time.deltaTime * Mathf.Abs(_swipe));
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(transform.eulerAngles.x, -45, transform.eulerAngles.z), steeringSpeed * Time.deltaTime);
         }
         if (_swipe == 0)

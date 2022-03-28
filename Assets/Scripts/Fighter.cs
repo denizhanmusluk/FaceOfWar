@@ -79,6 +79,8 @@ public class Fighter : MonoBehaviour,IFightStart
         anim.SetTrigger("walk");
         GameEvents.fightEvent.AddListener(moveTarget);
         GameEvents.fightEvent.AddListener(ApplySteer);
+        FightManager.Instance.Remove_fightStartObservers(this);
+
     }
     public void healthBarSet()
     {
@@ -141,6 +143,7 @@ public class Fighter : MonoBehaviour,IFightStart
             targetInitialize.soldier.Remove(this.gameObject);
             GetComponent<Ragdoll>().RagdollActivate(true);
             targetInitialize.whoWon();
+
         }
         healthBarSet();
     }

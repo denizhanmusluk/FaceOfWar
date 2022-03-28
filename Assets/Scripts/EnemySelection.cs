@@ -29,5 +29,7 @@ public class EnemySelection : MonoBehaviour, IFightStart
         {
             healthText[i].transform.parent.parent.parent.gameObject.SetActive(false);
         }
+        FightManager.Instance.Remove_fightStartObservers(this);
+
     }
 }

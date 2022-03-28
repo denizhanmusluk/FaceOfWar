@@ -15,13 +15,15 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver, IEndGameO
     [SerializeField] GameObject successPanel;
     [SerializeField] GameObject restartButton;
     [SerializeField] GameObject ProgressBar;
+    [SerializeField] GameObject gamePanel;
     public TextMeshProUGUI moneyLabel;
+    
 
     [SerializeField] RectTransform successImage, failImage;
     float firstImageScale = 10;
     float lastImageScale = 0.7f;
-
-    [SerializeField] CinemachineVirtualCamera camFirst, camMain;
+    public LevelManager lvlManager;
+    //[SerializeField] CinemachineVirtualCamera camFirst, camMain;
     //[SerializeField] GameObject confetti;
     void Awake()
     {
@@ -36,27 +38,27 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver, IEndGameO
         startObservers = new List<IStartGameObserver>();
         //finishObservers = new List<IFinish>();
     }
-    public void MoneyUpdate(int miktar)
-    {
-        int moneyOld = Globals.moneyAmount;
-        Globals.moneyAmount = Globals.moneyAmount + miktar;
-        LeanTween.value(moneyOld, Globals.moneyAmount, 0.2f).setOnUpdate((float val) =>
-        {
-            moneyLabel.text = "$" + val.ToString("N0");
-        });//.setOnComplete(() =>{});
-    }
+    //public void MoneyUpdate(int miktar)
+    //{
+    //    int moneyOld = Globals.moneyAmount;
+    //    Globals.moneyAmount = Globals.moneyAmount + miktar;
+    //    LeanTween.value(moneyOld, Globals.moneyAmount, 0.2f).setOnUpdate((float val) =>
+    //    {
+    //        moneyLabel.text = "$" + val.ToString("N0");
+    //    });//.setOnComplete(() =>{});
+    //}
     void Start()
     {
         Globals.moneyAmount = 0;
-        camFirst.Priority = 1;
-        camMain.Priority = 0;
+    
         startButton.SetActive(true);
         successPanel.SetActive(false);
         failPanel.SetActive(false);
+        gamePanel.SetActive(true);
         Add_WinObserver(this);
         Add_LoseObserver(this);
         Add_EndObserver(this);
-        moneyLabel.text = "$" + Globals.moneyAmount.ToString();
+        moneyLabel.text =Globals.moneyAmount.ToString();
 
     }
 
@@ -71,8 +73,7 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver, IEndGameO
         if (Input.GetMouseButtonUp(0))
         {
             StartCoroutine(startDelay());
-            camFirst.Priority = 0;
-            camMain.Priority = 1;
+
             ProgressBar.SetActive(true);
         }
     }
@@ -86,15 +87,42 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver, IEndGameO
     }
     public void RestartButton()
     {
+        Globals.currentLevelIndex = 0;
+        PlayerPrefs.SetInt("level", 0);
+
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    public void NextButton()
+    public void NextLevelbutton()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Globals.currentLevelIndex++;
+        if (Globals.LevelCount - 1< Globals.currentLevelIndex)
+        {
+            Globals.currentLevelIndex = 0;
+            PlayerPrefs.SetInt("level", 0);
+
+        }
+        else
+        {
+            PlayerPrefs.SetInt("level", Globals.currentLevelIndex);
+
+        }
+        Start();
+        Destroy(lvlManager.loadedLevel);
+        lvlManager.levelLoad();
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         //Globals.isGameActive = true;
     }
+    public void failLevelbutton()
+    {
+        PlayerPrefs.SetInt("level", Globals.currentLevelIndex);
 
+        Start();
+        Destroy(lvlManager.loadedLevel);
+        lvlManager.levelLoad();
+        Globals.isGameActive = true;
+    }
 
     public void LoseScenario()
     {
@@ -121,8 +149,8 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver, IEndGameO
 
         StartCoroutine(win_Delay());
 
-        Globals.currentLevel++;
-        PlayerPrefs.SetInt("level", Globals.currentLevel);
+        //Globals.currentLevel++;
+        //PlayerPrefs.SetInt("level", Globals.currentLevel);
 
     }
     IEnumerator win_Delay()
@@ -158,6 +186,7 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver, IEndGameO
     }
     public void GameEnd()
     {
+        gamePanel.SetActive(false);
 
     }
 
