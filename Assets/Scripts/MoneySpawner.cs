@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoneySpawner : MonoBehaviour
+public class MoneySpawner : MonoBehaviour,IStartGameObserver
 {
     public GameObject[] coin;
     public int coinGroupCount = 10;
@@ -13,10 +13,15 @@ public class MoneySpawner : MonoBehaviour
     int maxScore = 0;
     void Start()
     {
-        _coinSpawn();
+        GameManager.Instance.Add_StartObserver(this);
+      
     }
-
-    void _coinSpawn()
+    public void StartGame()
+    {
+        GameManager.Instance.Remove_StartObserver(this);
+        StartCoroutine(_coinSpawn());
+    }
+    IEnumerator _coinSpawn()
     {
         xPosition[0] = 0f;
         xPosition[1] = 0f;
@@ -49,6 +54,10 @@ public class MoneySpawner : MonoBehaviour
                 //float randomZ = i + x * coinGroupDistance;
                 var diamond = Instantiate(coin[selectionCoin], transform.position + new Vector3(randomX, randomY, randomZ), Quaternion.identity);
                 diamond.transform.parent = gameObject.transform;
+            if (x > 4)
+            {
+                yield return new WaitForSeconds(1.5f);
+            }
             //}
         }
         //Finish.Instance.maXScore = maxScore;

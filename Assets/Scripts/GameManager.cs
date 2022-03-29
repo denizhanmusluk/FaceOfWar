@@ -108,22 +108,29 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver, IEndGameO
             PlayerPrefs.SetInt("level", Globals.currentLevelIndex);
 
         }
-        Start();
-        Destroy(lvlManager.loadedLevel);
-        lvlManager.levelLoad();
+        StartCoroutine(levelLoad());
         //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         //Globals.isGameActive = true;
     }
     public void failLevelbutton()
     {
         PlayerPrefs.SetInt("level", Globals.currentLevelIndex);
+        StartCoroutine(levelLoad());
+
+        //Start();
+        //Destroy(lvlManager.loadedLevel);
+        //lvlManager.levelLoad();
+        //Globals.isGameActive = true;
+    }
+    IEnumerator levelLoad()
+    {
+        yield return null;
+
+        Destroy(lvlManager.loadedLevel);
 
         Start();
-        Destroy(lvlManager.loadedLevel);
         lvlManager.levelLoad();
-        Globals.isGameActive = true;
     }
-
     public void LoseScenario()
     {
         GameEvents.fightEvent.RemoveAllListeners();

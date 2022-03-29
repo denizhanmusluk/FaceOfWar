@@ -649,7 +649,7 @@ MonoBehaviour:
   moneyLabel: {fileID: 5583521928381590840}
   successImage: {fileID: 2084655202947929077}
   failImage: {fileID: 2084655204142368465}
-  lvlManager: {fileID: 0}
+  lvlManager: {fileID: 622079160}
 --- !u!4 &1393218075
 Transform:
   m_ObjectHideFlags: 0
