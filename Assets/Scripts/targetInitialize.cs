@@ -39,12 +39,21 @@ public class targetInitialize : MonoBehaviour, IFightStart
     {
         if (soldier.Count == 5)
         {
-            FightManager.Instance.Notify_GameFinishObservers();
-            for(int i = 0; i< soldier.Count; i++)
-            {
-                soldier[i].GetComponent<Collider>().enabled = false;
-            }
-            Debug.Log("full");
+            //FightManager.Instance.Notify_GameFinishObservers();
+            //for(int i = 0; i< soldier.Count; i++)
+            //{
+            //    soldier[i].GetComponent<Collider>().enabled = false;
+            //}
+            StartCoroutine(setColliderDelay());
+        }
+    }
+    IEnumerator setColliderDelay()
+    {
+        yield return null;
+        FightManager.Instance.Notify_GameFinishObservers();
+        for (int i = 0; i < soldier.Count; i++)
+        {
+            soldier[i].GetComponent<Collider>().enabled = false;
         }
     }
     public void whoWon()
