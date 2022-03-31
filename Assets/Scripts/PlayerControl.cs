@@ -68,7 +68,11 @@ public class PlayerControl : MonoBehaviour, IStartGameObserver
         {
             backSpeed = 0;
             currentBehaviour = States.forward;
+            m_previousX = Input.mousePosition.x;
+            dX = 0f;
+            dX_Sum = 0f;
         }
+
     }
     private void Awake()
     {

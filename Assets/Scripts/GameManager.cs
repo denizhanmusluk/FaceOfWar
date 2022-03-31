@@ -87,20 +87,26 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver, IEndGameO
     }
     public void RestartButton()
     {
+        Globals.currentLevel = 1;
+        PlayerPrefs.SetInt("levelIndex", 1);
+
+
         Globals.currentLevelIndex = 0;
         PlayerPrefs.SetInt("level", 0);
-
-
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void NextLevelbutton()
     {
+        Globals.currentLevel++;
+        PlayerPrefs.SetInt("levelIndex", Globals.currentLevel);
+
+
         Globals.currentLevelIndex++;
         if (Globals.LevelCount - 1< Globals.currentLevelIndex)
         {
-            Globals.currentLevelIndex = 0;
-            PlayerPrefs.SetInt("level", 0);
+            Globals.currentLevelIndex = Random.Range(0, Globals.LevelCount - 1);
+            PlayerPrefs.SetInt("level", Globals.currentLevelIndex);
 
         }
         else
@@ -114,6 +120,9 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver, IEndGameO
     }
     public void failLevelbutton()
     {
+        PlayerPrefs.SetInt("levelIndex", Globals.currentLevel);
+
+
         PlayerPrefs.SetInt("level", Globals.currentLevelIndex);
         StartCoroutine(levelLoad());
 
