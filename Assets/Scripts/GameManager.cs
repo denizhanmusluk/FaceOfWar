@@ -87,20 +87,22 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver, IEndGameO
     }
     public void RestartButton()
     {
-        Globals.currentLevel = 1;
-        PlayerPrefs.SetInt("levelIndex", 1);
+        //
+        //Globals.currentLevel = 1;
+        //PlayerPrefs.SetInt("levelIndex", 1);
+        //
 
-
-        Globals.currentLevelIndex = 0;
-        PlayerPrefs.SetInt("level", 0);
+        //Globals.currentLevelIndex = 0;
+        //PlayerPrefs.SetInt("level", 0);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void NextLevelbutton()
     {
+        //elephant next level
         Globals.currentLevel++;
         PlayerPrefs.SetInt("levelIndex", Globals.currentLevel);
-
+        //
 
         Globals.currentLevelIndex++;
         if (Globals.LevelCount - 1< Globals.currentLevelIndex)
@@ -120,7 +122,10 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver, IEndGameO
     }
     public void failLevelbutton()
     {
+        //elephant fail
         PlayerPrefs.SetInt("levelIndex", Globals.currentLevel);
+        //
+
 
 
         PlayerPrefs.SetInt("level", Globals.currentLevelIndex);

@@ -10,7 +10,6 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
-
         Globals.LevelCount = levels.Count;
 
         levelLoad();
