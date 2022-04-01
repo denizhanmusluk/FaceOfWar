@@ -38,8 +38,6 @@ public class PlayerControl : MonoBehaviour, IStartGameObserver
   public  RectTransform moneylabel;
     private void Start()
     {
-        moneylabel = GameObject.Find("moneyLabel").GetComponent<RectTransform>();
-        moneyTarget.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(moneylabel.transform.position.x, moneylabel.transform.position.y, Camera.main.WorldToScreenPoint(moneyTarget.transform.position).z));
         playerFirstPos = transform.position;
         currentBehaviour = States.idle;
         GameManager.Instance.Add_StartObserver(this);
@@ -56,6 +54,9 @@ public class PlayerControl : MonoBehaviour, IStartGameObserver
     }
     public void StartGame()
     {
+        moneylabel = GameObject.Find("moneyLabel").GetComponent<RectTransform>();
+        moneyTarget.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(moneylabel.transform.position.x, moneylabel.transform.position.y, Camera.main.WorldToScreenPoint(moneyTarget.transform.position).z));
+
         currentBehaviour = States.forward;
         anim.SetTrigger("walk");
     }
