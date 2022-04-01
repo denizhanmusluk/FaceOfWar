@@ -35,8 +35,11 @@ public class PlayerControl : MonoBehaviour, IStartGameObserver
     public int slotNum = 0;
     [SerializeField] GameObject moneyParticlePrefab;
     Vector3 playerFirstPos;
+  public  RectTransform moneylabel;
     private void Start()
     {
+        moneylabel = GameObject.Find("moneyLabel").GetComponent<RectTransform>();
+        moneyTarget.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(moneylabel.transform.position.x, moneylabel.transform.position.y, Camera.main.WorldToScreenPoint(moneyTarget.transform.position).z));
         playerFirstPos = transform.position;
         currentBehaviour = States.idle;
         GameManager.Instance.Add_StartObserver(this);
